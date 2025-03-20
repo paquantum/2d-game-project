@@ -1,4 +1,4 @@
-# 👯‍♀️2D Top Down MMORPG 2d-game-project
+# 👯‍♀️2D Top down MMORPG
 
 '바람의 나라' 일부를 클론 코딩합니다.
 
