@@ -10,9 +10,9 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
-/Assets/Editor
-/Assets/flatbuffers
-/Assets/Resources
+/Assets/Editor/
+/Assets/flatbuffers/
+/Assets/Resources/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
