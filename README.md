@@ -135,7 +135,7 @@
 
 <br/>
 
-## 📚 Project Detail Wiki
+## 📚 Project Details Wiki
 
 * [Wiki 페이지]([https://www.notion.so/Pre-Project-3d380dd015e54a7b8ce2a30d03a9af27?p=871197baab2c4951a8456c87a0aed09e&pm=c](https://github.com/paquantum/2d-game-project/wiki/Project-details)
 
