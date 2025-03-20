@@ -116,7 +116,7 @@
 
 ## 🏆 Advanced Achivements
 
-### front
+### client
 
 * 모든 디바이스 반응형 대응
 * 페이지별 데이터 로드
@@ -124,7 +124,7 @@
 * 중복 투표 불가능 기능 추가 및 그에따른 ui 대응
 * 프론트에서 유효성 검사 후 데이터 전송
 
-### back
+### server
 
 * JWT 토큰으로 회원 인증 및 권한 부여 
 * ERD Diagram으로 테이블 설계 및 연관관계 매핑
@@ -137,7 +137,7 @@
 
 ## 📚 Project Detail Wiki
 
-* [노션 페이지](https://www.notion.so/Pre-Project-3d380dd015e54a7b8ce2a30d03a9af27?p=871197baab2c4951a8456c87a0aed09e&pm=c)
+* [Wiki 페이지]([https://www.notion.so/Pre-Project-3d380dd015e54a7b8ce2a30d03a9af27?p=871197baab2c4951a8456c87a0aed09e&pm=c](https://github.com/paquantum/2d-game-project/wiki/Project-details)
 
 <br/>
 
