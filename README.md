@@ -2,12 +2,6 @@
 
 '바람의 나라' 일부를 클론 코딩합니다.
 
-<br/><br/>
-
-## 🚀 Visit Website
-
-[배포링크](http://pre-project-023.s3-website.ap-northeast-2.amazonaws.com/1/15)
-
 <br/>
 
 ## 🥅 Goal
