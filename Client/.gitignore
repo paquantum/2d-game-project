@@ -9,7 +9,7 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
-
+/[Mm]emoryCaptures/
 
 /Assets/flatbuffers/
 /Assets/Resources/
@@ -29,6 +29,9 @@
 
 # Visual Studio cache directory
 .vs/
+.idea/
+.vscode/
+.vsconfig
 
 # Gradle cache directory
 .gradle/
@@ -39,6 +42,7 @@ ExportedObj/
 *.csproj
 *.unityproj
 *.sln
+*.slnx
 *.suo
 *.tmp
 *.user
@@ -75,3 +79,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# OS 및 기타
+.DS_Store
+Thumbs.db

@@ -7,7 +7,6 @@
 #include "GameSessionManager.h"
 #include "ClientPacketHandler.h"
 #include <tchar.h>
-//#include "Job.h"
 #include "Room.h"
 #include "Player.h"
 #include "DBConnectionPool.h"

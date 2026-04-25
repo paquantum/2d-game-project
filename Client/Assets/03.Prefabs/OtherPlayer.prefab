@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 1123682889763470082}
   - component: {fileID: 7454821889342488517}
   - component: {fileID: -8702457834797865461}
+  - component: {fileID: -6722929912034773905}
+  - component: {fileID: -8276674315223489748}
   m_Layer: 0
   m_Name: OtherPlayer
   m_TagString: Untagged
@@ -39,6 +41,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2030520694429964778
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -57,6 +60,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -78,9 +83,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: -6598946016331564889, guid: 23748c298f885bf4c89671f6d30f562b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -90,7 +97,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &4294195205371520788
 Animator:
@@ -214,3 +220,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectId: 0
+--- !u!114 &-6722929912034773905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8931318996941377456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf039d837be6714a872084bdc7b639e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RemotePlayerController
+  objectId: 0
+  playerName: 
+--- !u!114 &-8276674315223489748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8931318996941377456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a05885f0db72604ca6ff958b4e72113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RemotePlayerManager
+  remotePlayerPrefab: {fileID: 0}
+  remotePlayersParent: {fileID: 0}
+  sprite: []

@@ -31,6 +31,9 @@
     <Filter Include="Contents\InventoryItem">
       <UniqueIdentifier>{51219b0d-fc34-4f22-9ff2-da1018e5d50d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Job">
+      <UniqueIdentifier>{a3422551-36e6-425f-9433-756d6208ba5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameServer.cpp">
@@ -92,6 +95,9 @@
     <ClCompile Include="TradeSession.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Job.cpp">
+      <Filter>Contents\Job</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -151,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="UserProtocol_generated.h">
       <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Job.h">
+      <Filter>Contents\Job</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

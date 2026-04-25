@@ -1,0 +1,9 @@
+# OS 자동 생성 파일
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 최상위 IDE 설정
+.vs/
+.vscode/
+.idea/

@@ -13,6 +13,30 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
+Binary/
+x64/
+x86/
+[Dd]ebug/
+[Rr]elease/
+# 바이너리, 객체, 디버그 심볼 파일
+*.exe
+*.dll
+*.pdb
+*.obj
+*.lib
+*.ilk
+*.pch
+*.exp
+*.idb
+*.tlog
+*.iobj
+*.ipdb
+
+# 로그 및 임시 파일
+*.log
+*.tmp
+*.temp
+
 /Binary/
 /[Ll]ibraries/
 /DummyClient/
@@ -48,6 +72,7 @@ ExportedObj/
 *.suo
 *.tmp
 *.user
+*.slnLaunch.user
 *.userprefs
 *.pidb
 *.booproj
@@ -56,6 +81,7 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+*.db
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -212,6 +238,9 @@ ipch/
 *.sdf
 *.cachefile
 *.VC.VC.opendb
+*.ipch
+*.opendb
+*.VC.db
 
 # Visual Studio profiler
 *.psess

@@ -13,7 +13,6 @@
 #include "TradeSession.h"
 #include "InventoryItemService.h"
 
-
 PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
 void ShowChangeItem(vector<InventoryItem> origin, vector<InventoryItem> tm);
@@ -339,7 +338,11 @@ bool Handle_C_ENTER_GAME(PacketSessionRef& session, const UserPKT::C_ENTER_GAME&
 	gameSession->selectPlayerIdx = playerId;
 	cout << "C_ENTER_GAME-> 적용 후 gameSession->selectPlayerIdx: " << gameSession->selectPlayerIdx << endl;
 
-	GRoom.Enter(player);
+	 GRoom.Enter(player); // WRITE_LOCK
+	// 이렇게 바꾸면 이건 바로 실행이 아니라, 일감만 만들어 놓고 예약을 걸어놓은 것으로
+	// 바로 S_ENTER_GAME 패킷을 아래 바로 실행되는게 다소 이상하게 보일 수 있음
+	// 즉, 아직 실행된게 아니고 일가만 만들어 놓은 상태로, 나중에 누군가가 실행해줄거임
+	// 그래서 S_ENTER_GAME 패킷을 EnterJob의 Execute 안으로 옮기는게 더 자연스러울 수 있음
 	cout << playerId << "번 캐릭터 " << player->name << "가 게임에 입장했습니다" << endl;
 
 	// 서버에서 고유 objectId를 생성
@@ -623,7 +626,7 @@ bool Handle_C_MOVE(PacketSessionRef& session, const UserPKT::C_MOVE& pkt)
 	else if (creatureStateNum == 3) cout << ", State: DEAD";
 	cout << endl;*/
 
-	//cout << "x: " << pkt.positionInfo()->posX() << ", y: " << pkt.positionInfo()->posY() << endl;
+	cout << "C_MOVE objectId: " << (int)pkt.objectId() << "-- " << "x: " << pkt.positionInfo()->posX() << ", y: " << pkt.positionInfo()->posY() << endl;
 
 	flatbuffers::FlatBufferBuilder builder;
 	auto sCreatePositionInfo = UserPKT::CreatePositionInfo(builder, pkt.positionInfo()->state(), pkt.positionInfo()->moveDir(), pkt.positionInfo()->posX(), pkt.positionInfo()->posY());

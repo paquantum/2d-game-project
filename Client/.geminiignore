@@ -1,0 +1,56 @@
+# 1. Unity 자동 생성 폴더 (코드 분석과 무관하며 용량이 매우 큼)
+Library/
+Logs/
+obj/
+Builds/
+Temp/
+UserSettings/
+MemoryCaptures/
+Packages/
+
+# 2. Visual Studio 및 IDE 설정 파일
+.vs/
+.vsconfig
+*.sln
+*.slnx
+*.csproj
+*.user
+
+# 3. 유니티 메타 파일 (토큰 낭비의 주범)
+*.meta
+
+# 4. 에셋 및 미디어 확장자 (AI가 읽을 필요 없음)
+*.png
+*.jpg
+*.jpeg
+*.mp4
+*.wav
+*.mp3
+*.fbx
+*.mat
+*.anim
+*.prefab
+*.asset
+*.unity
+*.inputactions
+
+# ==========================================
+# 5. Assets 내부의 불필요한 리소스 폴더 통째로 무시
+# ==========================================
+Assets/01.Scenes/
+Assets/03.Prefabs/
+Assets/04.Images/
+Assets/05.Models/
+Assets/06.Sounds/
+Assets/07.Animation/
+Assets/08.Tiles/
+Assets/flatbuffers/FlatBuffers/
+Assets/Resources/
+Assets/Settings/
+
+# ==========================================
+# 6. 외부 에셋 및 플러그인 무시
+# (직접 짠 코드가 아니므로 분석에서 제외)
+# ==========================================
+Assets/TextMesh Pro/
+Assets/TopDown 2D RPG BE3/

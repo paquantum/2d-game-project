@@ -1,0 +1,44 @@
+# 1. 최종 빌드 결과물 (가장 용량이 큼)
+Binary/
+
+# 2. 중간 빌드 폴더 (GameServer, ServerCore 등의 하위에 생성됨)
+x64/
+Debug/
+Release/
+DummyClient/
+GameServer/x64/
+ServerCore/x64/
+
+# 3. Visual Studio 및 IDE 설정
+.vs/
+*.sln
+*.user
+*.slnLaunch.user
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# 4. 컴파일된 바이너리 및 디버그 파일 확장자
+*.exe
+*.dll
+*.pdb
+*.obj
+*.lib
+*.ilk
+*.pch
+*.exp
+*.idb
+
+# 5. 로그 및 임시 파일
+*.log
+*.temp
+*.tmp
+*.tlog
+
+# 6. 외부 라이브러리 (선택 사항)
+# Libraries 폴더가 직접 짠 코드가 아니라 외부 코드라면 주석(#)을 해제하세요.
+# Libraries/
+Libraries/Debug/
+Libraries/Libs/
+Libraries/Release/
+Libraries/ServerCoreOld/

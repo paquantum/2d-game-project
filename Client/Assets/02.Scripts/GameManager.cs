@@ -320,8 +320,11 @@ public class GameManager : MonoBehaviour
             if (gameSceneManager != null)
             {
                 //Debug.Log("packetHandler에서 캐릭 위치 넘김");
-                RemotePlayerManager.Instance.UpdateRemotePlayerPosition(playerInfoList);
-                RemotePlayerManager.Instance.AddOrUpdatePlayer(playerInfoList);
+                //RemotePlayerManager.Instance.UpdateRemotePlayerPosition(playerInfoList);
+                //RemotePlayerManager.Instance.AddOrUpdatePlayer(playerInfoList);
+                // 통합된 하나의 함수만 호출합니다.
+                // (함수 이름은 SynchronizeRemotePlayers로 변경 추천)
+                RemotePlayerManager.Instance.SynchronizeRemotePlayers(playerInfoList);
             }
             else
             {
