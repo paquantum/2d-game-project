@@ -338,11 +338,16 @@ bool Handle_C_ENTER_GAME(PacketSessionRef& session, const UserPKT::C_ENTER_GAME&
 	gameSession->selectPlayerIdx = playerId;
 	cout << "C_ENTER_GAME-> 적용 후 gameSession->selectPlayerIdx: " << gameSession->selectPlayerIdx << endl;
 
-	 GRoom.Enter(player); // WRITE_LOCK
+	/**
+	* 기존에 GRoom에 바로 함수를 사용했다면
+	* 이제는 Job을 만들어서 넘겨주기만 함
+	*/
+	// GRoom.Enter(player); // WRITE_LOCK
+	GRoom.PushJob(MakeShared<EnterJob>(GRoom, player)); // 잡 방식으로 변경
 	// 이렇게 바꾸면 이건 바로 실행이 아니라, 일감만 만들어 놓고 예약을 걸어놓은 것으로
 	// 바로 S_ENTER_GAME 패킷을 아래 바로 실행되는게 다소 이상하게 보일 수 있음
 	// 즉, 아직 실행된게 아니고 일가만 만들어 놓은 상태로, 나중에 누군가가 실행해줄거임
-	// 그래서 S_ENTER_GAME 패킷을 EnterJob의 Execute 안으로 옮기는게 더 자연스러울 수 있음
+	// 그래서 아래 S_ENTER_GAME 패킷을 EnterJob의 Execute 안으로 옮기는게 더 자연스러울 수 있음
 	cout << playerId << "번 캐릭터 " << player->name << "가 게임에 입장했습니다" << endl;
 
 	// 서버에서 고유 objectId를 생성
@@ -370,11 +375,16 @@ bool Handle_C_ENTER_GAME(PacketSessionRef& session, const UserPKT::C_ENTER_GAME&
 	-------------------*/
 	{	// PKT_S_OTHER_PLAYER로 해당 유저에게 기존 접속해 있던 유저들의 정보를 넘긴다
 		flatbuffers::FlatBufferBuilder builder2;
-		vector<PlayerRef> otherPlayers = GRoom.GetOtherPlayer();
+		//vector<PlayerRef> otherPlayers = GRoom.GetOtherPlayer();
+		//vector<PlayerRef> otherPlayers = GRoom.PushJob(MakeShared<GetOtherPlayerJob>(GRoom));
+		// 
 		//cout << "otherPlayers: " + otherPlayers.size() << endl;
 
 		vector<flatbuffers::Offset<UserPKT::ObjectInfo>> objectInfos;
-		for (auto& p : otherPlayers)
+		/**
+		* 잡큐 변경으로 현재 임시 주석 처리
+		*/
+		/*for (auto& p : otherPlayers)
 		{
 			int moveDirNum = p->moveDir;
 			cout << "원격 유저 moveDir: ";
@@ -388,7 +398,7 @@ bool Handle_C_ENTER_GAME(PacketSessionRef& session, const UserPKT::C_ENTER_GAME&
 			string utf8Name = ConvertChar::StringToU8String(p->name);
 			auto uName = builder2.CreateString(utf8Name);
 			objectInfos.push_back(UserPKT::CreateObjectInfo(builder2, p->objectId, uName, positionInfo, &statInfo));
-		}
+		}*/
 		auto playersVector = builder2.CreateVector(objectInfos);
 		auto sOtherPlayer = UserPKT::CreateS_OTHER_PLAYER(builder2, playersVector);
 		builder2.Finish(sOtherPlayer);
@@ -402,7 +412,10 @@ bool Handle_C_ENTER_GAME(PacketSessionRef& session, const UserPKT::C_ENTER_GAME&
 	-------------------*/
 	{	// PKT_S_OTHER_PLAYER로 기존 유저들에게 지금 게임에 입장한 유저의 정보를 넘긴다
 		flatbuffers::FlatBufferBuilder builder3;
-		vector<PlayerRef> otherPlayers = GRoom.GetOtherPlayer();
+		/**
+		* 잡큐 변경으로 현재 임시 주석 처리
+		*/
+		//vector<PlayerRef> otherPlayers = GRoom.GetOtherPlayer();
 		//cout << "otherPlayers: " + otherPlayers.size() << endl;
 
 		auto positionInfo = UserPKT::CreatePositionInfo(builder3, UserPKT::CreatureState_IDLE, player->moveDir, player->x, player->y);
@@ -419,10 +432,10 @@ bool Handle_C_ENTER_GAME(PacketSessionRef& session, const UserPKT::C_ENTER_GAME&
 		cout << "S_OTHER_PLAYER로 기존 유저에게 지금 접속 유저 정보 보냄" << endl;
 
 		auto sendBuffer = ClientPacketHandler::MakeSendBuffer(builder3, PKT_S_OTHER_PLAYER);
-		GRoom.Broadcast(sendBuffer);
+		//GRoom.Broadcast(sendBuffer);
+		GRoom.PushJob(MakeShared<BroadcastJob>(GRoom, sendBuffer));
 	}
 	
-
 	return true;
 }
 
@@ -635,7 +648,8 @@ bool Handle_C_MOVE(PacketSessionRef& session, const UserPKT::C_MOVE& pkt)
 	builder.Finish(sCreateMovePacket);
 	
 	auto sendBuffer = ClientPacketHandler::MakeSendBuffer(builder, PKT_S_MOVE);
-	GRoom.Broadcast(sendBuffer);
+	//GRoom.Broadcast(sendBuffer);
+	GRoom.PushJob(make_shared<BroadcastJob>(GRoom, sendBuffer));
 
 	return true;
 }
@@ -686,7 +700,8 @@ bool Handle_C_CHAT(PacketSessionRef& session, const UserPKT::C_CHAT& pkt)
 	builder.Finish(sChat);
 
 	auto sendBuffer = ClientPacketHandler::MakeSendBuffer(builder, PKT_S_CHAT);
-	GRoom.Broadcast(sendBuffer);
+	//GRoom.Broadcast(sendBuffer);
+	GRoom.PushJob(make_shared<BroadcastJob>(GRoom, sendBuffer));
 
 	return true;
 }

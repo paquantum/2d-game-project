@@ -13,6 +13,7 @@
 #include "DBBind.h"
 #include "CreateTableSQL.h"
 #include "TradeSession.h"
+#include "Job.h"
 
 enum
 {
@@ -21,6 +22,17 @@ enum
 
 int main()
 {
+	// TEST JOB
+	{
+		HealJob healJob;
+		healJob._target = 1;
+		healJob._healValue = 100;
+
+		// 나~~ 중에
+		healJob.Execute();
+	}
+
+
 	// 디비 풀에 몇개 디비연결을 생성할지, 어떤 디비를 사용할지..
 	//ASSERT_CRASH(GDBConnectionPool->Connect(1, L"Driver={SQL Server Native Client 11.0};Server=(localdb)\\MSSQLLocalDB;Database=ServerDb;Trusted_Connection=Yes;"));
 	//ASSERT_CRASH(GDBConnectionPool->Connect(1, L"Driver={MySQL ODBC 9.1 Unicode Driver};Server=ServerDB;Database=gameserver;Uid=root;Pwd=qaz123!@#;"));
@@ -72,6 +84,18 @@ int main()
 			});
 	}
 
+	/**
+	* JobQueue _jobs 에서 일감을 꺼내서 실행을 시킬 스레드가 필요한데,
+	* 이번에는 간단하게 하기 위해서 메인 스레드에서 일감을 처리하는 형태로 구현
+	*/
+	while (true)
+	{
+		GRoom.FlushJob(); // Room에 쌓인 일감 처리
+		this_thread::sleep_for(chrono::milliseconds(1));
+
+	}
+
+	
 	//while (true) {
 	//	// 다른 서버 작업 수행...
 	//	TradeSessionManager::GetInstance().CheckTimeout();
