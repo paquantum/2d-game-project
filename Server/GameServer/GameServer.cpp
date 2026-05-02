@@ -20,16 +20,19 @@ enum
 	WORKER_TICK = 64
 };
 
+void HealByValue(int64 target, int32 value)
+{
+	cout << "Heal " << target << " by " << value << endl;
+}
+
 int main()
 {
 	// TEST JOB
 	{
-		HealJob healJob;
-		healJob._target = 1;
-		healJob._healValue = 100;
-
-		// 나~~ 중에
-		healJob.Execute();
+		// 주문서에 필요한 함수, 인자들을 한 번에 생성
+		FuncJob<void, int64, int32> job(HealByValue, 100, 10);
+		// 필요할 때 실행
+		job.Execute();
 	}
 
 
@@ -92,7 +95,6 @@ int main()
 	{
 		GRoom.FlushJob(); // Room에 쌓인 일감 처리
 		this_thread::sleep_for(chrono::milliseconds(1));
-
 	}
 
 	
