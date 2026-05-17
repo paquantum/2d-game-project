@@ -345,7 +345,10 @@ bool Handle_C_ENTER_GAME(PacketSessionRef& session, const UserPKT::C_ENTER_GAME&
 	// GRoom.Enter(player); // WRITE_LOCK
 	// GRoom.PushJob(MakeShared<EnterJob>(GRoom, player)); // 잡 방식으로 변경
 	// 2세대 방식 변경으로 함수 호출 방식 변경
-	GRoom.PushJob(&Room::Enter, player); // 헬퍼 함수로 더 간편하게 변경);
+	//GRoom.PushJob(&Room::Enter, player); // 헬퍼 함수로 더 간편하게 변경);
+	
+	//GRoom->PushJob(&Room::Enter, player);
+	GRoom->PushJob(&Room::Enter, player);
 
 	// 이렇게 바꾸면 이건 바로 실행이 아니라, 일감만 만들어 놓고 예약을 걸어놓은 것으로
 	// 바로 S_ENTER_GAME 패킷을 아래 바로 실행되는게 다소 이상하게 보일 수 있음
@@ -438,7 +441,7 @@ bool Handle_C_ENTER_GAME(PacketSessionRef& session, const UserPKT::C_ENTER_GAME&
 		//GRoom.Broadcast(sendBuffer);
 		// GRoom.PushJob(MakeShared<BroadcastJob>(GRoom, sendBuffer));
 		// 2세대 방식 변경으로 함수 호출 방식 변경
-		GRoom.PushJob(&Room::Broadcast, sendBuffer); // 헬퍼 함수로 더 간편하게 변경
+		//GRoom.PushJob(&Room::Broadcast, sendBuffer); // 헬퍼 함수로 더 간편하게 변경
 	}
 	
 	return true;
@@ -655,7 +658,7 @@ bool Handle_C_MOVE(PacketSessionRef& session, const UserPKT::C_MOVE& pkt)
 	auto sendBuffer = ClientPacketHandler::MakeSendBuffer(builder, PKT_S_MOVE);
 	//GRoom.Broadcast(sendBuffer);
 	//GRoom.PushJob(make_shared<BroadcastJob>(GRoom, sendBuffer));
-	GRoom.PushJob(&Room::Broadcast, sendBuffer); // 2세대 방식으로 사용
+	//GRoom.PushJob(&Room::Broadcast, sendBuffer); // 2세대 방식으로 사용
 
 	return true;
 }
@@ -708,7 +711,7 @@ bool Handle_C_CHAT(PacketSessionRef& session, const UserPKT::C_CHAT& pkt)
 	auto sendBuffer = ClientPacketHandler::MakeSendBuffer(builder, PKT_S_CHAT);
 	//GRoom.Broadcast(sendBuffer);
 	// GRoom.PushJob(make_shared<BroadcastJob>(GRoom, sendBuffer));
-	GRoom.PushJob(&Room::Broadcast, sendBuffer); // 2세대 방식으로 사용
+	//GRoom.PushJob(&Room::Broadcast, sendBuffer); // 2세대 방식으로 사용
 
 	return true;
 }

@@ -168,7 +168,7 @@ private:
 //	uint32 _healValue = 0;
 //};
 
-using JobRef = shared_ptr<IJob>;
+//using JobRef = shared_ptr<IJob>;
 // 순차적으로 처리하게끔 유도하도록
 class JobQueue
 {
